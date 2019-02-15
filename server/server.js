@@ -1,7 +1,9 @@
 const express = require('express');
 const mysql = require('promise-mysql');
+const cors = require('cors');
 
 const app = express();
+app.use(cors())
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -10,6 +12,7 @@ const connection = mysql.createConnection({
     password: 'root',
     database: 'blogaway'
 });
+
 
 app.get('/', (req,res)=>{
     res.send({
@@ -272,6 +275,6 @@ app.get('/article/:articleID', (req, res) => {
 
 // app.get('/deleteArticle')
 
-app.listen(3000, ()=>{
-    console.log("Server running on https://localhost:3000");
+app.listen(5000, ()=>{
+    console.log("Server running on http://localhost:5000");
 });

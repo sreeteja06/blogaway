@@ -3,7 +3,8 @@ import "./App.css";
 import axios from "axios";
 import ArticleCard from "./components/articleCard/ArticleCard";
 import { Link, Route } from "react-router-dom";
-import Article from './components/Article/Article'
+import Article from './components/Article/Article';
+import NewArticle from './components/NewArticle/NewArticle';
 class App extends Component {
   state = {
     articles: []
@@ -49,7 +50,8 @@ class App extends Component {
             </div>
           );
         })}
-        <Route path="/article/:articleID" component={Article} />
+        <Route path="/article/:articleID" exact component={Article} />
+        <Route path="/newArticle" exact component={NewArticle} />
       </div>
     );
   }

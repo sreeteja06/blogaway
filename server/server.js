@@ -76,17 +76,20 @@ app.get('/userArticles/:authorID', (req, res) => {
 // add article
 app.post('/addArticle', (req, res) => {
     // content title descript authorID
-    let message = "";
+    let message = "", result;
     connection.then(async(conn)=>{
         try{
-            await conn.query('insert into articletable (content, title, descript, authorID) values ("'+req.query.content+'","'+req.query.title+'","'+req.query.description+'", '+ req.query.userid+")");
+            console.log(req.query);
+            // console.log("p"+JSON.stringify(req.params));
+            result = await conn.query('insert into articletable (content, title, descript, authorID, tsp) values ("'+req.query.content+'","'+req.query.title+'","'+req.query.description+'", '+ req.query.userid+", now())");
             message = "success";
         }catch(e){
             message = "fail";
-            console.log(e);
+            // console.log(e);
         }
         res.send({
-            message
+            message,
+            result
         })
     });
 });
